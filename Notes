@@ -1,0 +1,52 @@
+// Data for the table
+const data = [
+  { name: "Alice", age: 25, job: "Developer" },
+  { name: "Bob", age: 30, job: "Designer" },
+  { name: "Charlie", age: 35, job: "Manager" }
+];
+
+// Function to create the table
+function createTable(data) {
+  // Create table element
+  const table = document.createElement('table');
+
+  // Create table header
+  const thead = document.createElement('thead');
+  const headerRow = document.createElement('tr');
+
+  // Add headers based on keys of the first object in the data array
+  Object.keys(data[0]).forEach(key => {
+    const th = document.createElement('th');
+    th.textContent = key.charAt(0).toUpperCase() + key.slice(1);
+    headerRow.appendChild(th);
+  });
+
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  // Create table body
+  const tbody = document.createElement('tbody');
+
+  data.forEach(item => {
+    const row = document.createElement('tr');
+
+    Object.values(item).forEach(value => {
+      const td = document.createElement('td');
+      td.textContent = value;
+      row.appendChild(td);
+    });
+
+    tbody.appendChild(row);
+  });
+
+  table.appendChild(tbody);
+
+  return table;
+}
+
+// Get the container element
+const container = document.getElementById('table-container');
+
+// Create the table and append it to the container
+const table = createTable(data);
+container.appendChild(table);
